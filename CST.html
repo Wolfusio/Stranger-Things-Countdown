@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Compte à rebours Stranger Things</title>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+
+
+
+    body {
+
+        margin: 0;
+
+        padding: 0;
+
+        height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        flex-direction: column;
+
+        background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+
+        color: #ff1e1e;
+
+        font-family: 'Nosifer', cursive;
+
+        text-align: center;
+
+        overflow: hidden;
+
+    }
+
+
+
+    h1 {
+
+        font-size: 2.5em;
+
+        margin-bottom: 20px;
+
+        text-shadow: 0 0 15px #ff1e1e, 0 0 30px #ff3d3d, 0 0 45px #ff6f6f;
+
+    }
+
+
+
+    #countdown {
+
+        font-size: 3em;
+
+        text-shadow: 0 0 15px #ff1e1e, 0 0 30px #ff3d3d, 0 0 45px #ff6f6f;
+
+    }
+
+
+
+    /* Petite animation de pulsation pour le style Stranger Things */
+
+    @keyframes pulse {
+
+        0%, 100% { transform: scale(1); }
+
+        50% { transform: scale(1.05); }
+
+    }
+
+
+
+    #countdown {
+
+        animation: pulse 1.5s infinite;
+
+    }
+
+
+
+    /* Responsive */
+
+    @media (max-width: 600px) {
+
+        h1 { font-size: 1.8em; }
+
+        #countdown { font-size: 2.2em; }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🚨 Compte à rebours épisode secret 🚨</h1>
+
+<div id="countdown"></div>
+
+
+
+<script>
+
+const targetDate = new Date("January 8, 2026 02:00:00").getTime();
+
+
+
+function updateCountdown() {
+
+    const now = new Date().getTime();
+
+    const distance = targetDate - now;
+
+
+
+    if (distance <= 0) {
+
+        document.getElementById("countdown").innerHTML = "🚨 C'EST L'HEURE ! 🚨";
+
+        clearInterval(interval);
+
+        return;
+
+    }
+
+
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+
+    document.getElementById("countdown").innerHTML =
+
+        `${days}j ${hours}h ${minutes}m ${seconds}s`;
+
+}
+
+
+
+updateCountdown();
+
+const interval = setInterval(updateCountdown, 1000);
+
+</script>
+
+</body>
+
+</html>
